@@ -57,7 +57,7 @@ GradeMinSec::GradeMinSec(DecimalGrade g_)
 
 }
 
-void runUnits()
+void unitsRun()
 {
 	DecimalGrade g(2.0 / (1 << 12));
 	GradeMinSec gms(g);
