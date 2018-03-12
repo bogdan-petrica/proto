@@ -463,8 +463,87 @@ struct TopState : TStateBase< TopStateDef >
     }
 };
 
+
+#include <iostream>
+
+namespace
+{
+    struct BaseAll
+    {
+        virtual void dispatch() = 0;
+    };
+
+    template <typename Derived>
+    struct StateBase : BaseAll
+    {
+        virtual void dispatch()
+        {
+            static_cast<Derived&>(*this).handle();
+        }
+    };
+
+    template <typename Derived, template<typename> class Impl >
+    struct StateCounting : Impl< StateCounting< Derived, Impl > >
+    {
+        StateCounting()
+            : m_count()
+        {
+        }
+
+        void handle()
+        {
+            ++m_count;
+            static_cast<Derived&>(*this).handle();
+        }
+
+        unsigned int m_count;
+    };
+
+    template <typename Derived, template<typename> class Impl>
+    struct StateGtest : Impl< StateGtest< Derived, Impl > >
+    {
+        void handle()
+        {
+            std::cout << "Strange\n";
+            static_cast<Derived&>(*this).handle();
+        }
+    };
+
+    template<template<typename> class Impl>
+    struct StateCountingImpl
+    {
+        template <typename Derived>
+        struct XXX : StateCounting< Derived, Impl >
+        {
+
+        };
+    };
+
+    template <typename Derived>
+    struct TTT : StateGtest< TTT< Derived >, StateCountingImpl< StateBase >::XXX >
+    {
+        void handle()
+        {
+            std::cout << "Not so strange\n";
+            static_cast<Derived&>(*this).handle();
+        }
+    };
+
+    struct Bleah : TTT< Bleah>
+    {
+        void handle()
+        {
+            std::cout << "Finally...me...\n";
+        }
+    };
+
+}
+
 void hsmRun()
 {
+    Bleah b;
+    b.dispatch();
+
     TopState machine;
 
     for (unsigned int i = 0u; i < 100u; ++i)
@@ -474,3 +553,5 @@ void hsmRun()
         machine.dispatch();
     }
 }
+
+
