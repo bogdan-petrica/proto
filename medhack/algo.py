@@ -1,167 +1,260 @@
-# Hello World program in Python
-    
+import argparse
+import sys
+
 diseaseObservationList = [
   
-("ima","sugar",0.0217391304347826),
-("ima","copil",0.0217391304347826),
-("ima","adolescent",0.0217391304347826),
-("ima","adult",0.0217391304347826),
-("ima","varstnic",0.0217391304347826),
-("ima","mascul",0.0217391304347826),
-("ima","ahc - ima",0.0217391304347826),
-("ima","app - ima",0.0217391304347826),
-("ima","app - arterite",0.0217391304347826),
-("ima","app - cardiopatii valvulare",0.0217391304347826),
-("ima","app - dz",0.0217391304347826),
-("ima","app - anemie",0.0217391304347826),
-("ima","app - boli endocrine",0.0217391304347826),
-("ima","app - tulburari de ritm",0.0217391304347826),
-("ima","app - tulburari de conducere",0.0217391304347826),
-("ima","app - obezitate",0.0217391304347826),
-("ima","app - hta",0.0217391304347826),
-("ima","cmv - fumat",0.0217391304347826),
-("ima","cmv - sedentarism",0.0217391304347826),
-("ima","cmv - consum droguri",0.0217391304347826),
-("ima","cmv - stres",0.0217391304347826),
-("ima","debut simptomalogie - acut",0.0217391304347826),
-("ima","durere localizare toracica",0.0217391304347826),
-("ima","durere localizare precordiala",0.0217391304347826),
-("ima","durere localizare epigastrica",0.0217391304347826),
-("ima","iradiere durere",0.0217391304347826),
-("ima","durere caracter presiune",0.0217391304347826),
-("ima","durere caracter arsura",0.0217391304347826),
-("ima","durere durata - peste 20 min",0.0217391304347826),
-("ima","dispnee",0.0217391304347826),
-("ima","transpiratii",0.0217391304347826),
-("ima","greata",0.0217391304347826),
-("ima","varsaturi",0.0217391304347826),
-("ima","anxietate",0.0217391304347826),
-("ima","ameteli",0.0217391304347826),
-("ima","fatigabilitate",0.0217391304347826),
-("ima","sincopa",0.0217391304347826),
-("ima","simptome pseudogripale",0.0217391304347826),
-("ima","palpitatii",0.0217391304347826),
-("ima","tahicardie",0.0217391304347826),
-("ima","bradicardie",0.0217391304347826),
-("ima","aritmie",0.0217391304347826),
-("ima","hipertensiune",0.0217391304347826),
-("ima","hipotensiune",0.0217391304347826),
-("ima","tahipnee",0.0217391304347826),
-("ima","febra",0.0217391304347826),
-("avc","sugar",0.0227272727272727),
-("avc","copil",0.0227272727272727),
-("avc","adolescent",0.0227272727272727),
-("avc","adult",0.0227272727272727),
-("avc","varstnic",0.0227272727272727),
-("avc","mascul",0.0227272727272727),
-("avc","debut - brusc",0.0227272727272727),
-("avc","ahc - avc",0.0227272727272727),
-("avc","app - avc",0.0227272727272727),
-("avc","app - hta",0.0227272727272727),
-("avc","app - icc",0.0227272727272727),
-("avc","app - ima",0.0227272727272727),
-("avc","app - dz",0.0227272727272727),
-("avc","app - obezitate",0.0227272727272727),
-("avc","cmv - sedentarism",0.0227272727272727),
-("avc","cmv - fumat",0.0227272727272727),
-("avc","paralizie membru superior",0.0227272727272727),
-("avc","paralizie membru inferior",0.0227272727272727),
-("avc","paralizie faciala",0.0227272727272727),
-("avc","pareza membru superior",0.0227272727272727),
-("avc","pareza membru inferior",0.0227272727272727),
-("avc","pareza faciala",0.0227272727272727),
-("avc","tulburari de vorbire",0.0227272727272727),
-("avc","diplopie ",0.0227272727272727),
-("avc","vedere incetosata",0.0227272727272727),
-("avc","tulburari de coordonare",0.0227272727272727),
-("avc","tulburari de echilibru",0.0227272727272727),
-("avc","cefalee",0.0227272727272727),
-("avc","parestezii membru superior",0.0227272727272727),
-("avc","parestezii membru inferior",0.0227272727272727),
-("avc","parestezii faciale",0.0227272727272727),
-("avc","tulburari de mers ",0.0227272727272727),
-("avc","fatigabilitate",0.0227272727272727),
-("avc","ameteli",0.0227272727272727),
-("avc","vertij",0.0227272727272727),
-("avc","sincopa",0.0227272727272727),
-("avc","greata ",0.0227272727272727),
-("avc","varsaturi",0.0227272727272727),
-("avc","dificultati la inghitire",0.0227272727272727),
-("avc","convulsii",0.0227272727272727),
-("avc","alterarea starii de constienta",0.0227272727272727),
-("avc","fotofobie",0.0227272727272727),
-("avc","amauroza",0.0227272727272727),
-("avc","coma",0.0227272727272727),
-("ira","sugar",0.0256410256410256),
-("ira","copil",0.0256410256410256),
-("ira","adolescent",0.0256410256410256),
-("ira","adult",0.0256410256410256),
-("ira","varstnic",0.0256410256410256),
-("ira","mascul",0.0256410256410256),
-("ira","debut simptomalogie - acut",0.0256410256410256),
-("ira","app - glomerulonefrita",0.0256410256410256),
-("ira","app - lupus",0.0256410256410256),
-("ira","app - vasculita",0.0256410256410256),
-("ira","app - mielom multiplu",0.0256410256410256),
-("ira","app - sclerodermie",0.0256410256410256),
-("ira","app - cancer vezica urinara",0.0256410256410256),
-("ira","app - hiperplazie prostata",0.0256410256410256),
-("ira","app - litiaza renala",0.0256410256410256),
-("ira","app - boala arteriala periferica",0.0256410256410256),
-("ira","app - dz",0.0256410256410256),
-("ira","app - hta",0.0256410256410256),
-("ira","app - afectiuni renale",0.0256410256410256),
-("ira","app - consum hipotensoare",0.0256410256410256),
-("ira","app - consum aspirina/ains",0.0256410256410256),
-("ira","app - insuficienta hepatica",0.0256410256410256),
-("ira","cmv - consum alcool",0.0256410256410256),
-("ira","cmv - consum droguri",0.0256410256410256),
-("ira","cmv - metale grele",0.0256410256410256),
-("ira","anafilaxie",0.0256410256410256),
-("ira","arsuri ",0.0256410256410256),
-("ira","dezhidratare",0.0256410256410256),
-("ira","ima",0.0256410256410256),
-("ira","infectie",0.0256410256410256),
-("ira","edeme membre inferioare",0.0256410256410256),
-("ira","dispnee",0.0256410256410256),
-("ira","durere localizare toracica",0.0256410256410256),
-("ira","fatigabilitate",0.0256410256410256),
-("ira","alterarea starii de constienta",0.0256410256410256),
-("ira","greata",0.0256410256410256),
-("ira","convulsii",0.0256410256410256),
-("ira","coma",0.0256410256410256),
-("ira","durere caracter constrictiv",0.0256410256410256),
-("apa","sugar",0.05),
-("apa","copil",0.05),
-("apa","adolescent",0.05),
-("apa","adult",0.05),
-("apa","varstnic",0.05),
-("apa","mascul",0.05),
-("apa","app - helmintoza",0.05),
-("apa","app - consum steroizi",0.05),
-("apa","app - dz",0.05),
-("apa","durere localizare abdominala",0.05),
-("apa","durere difuza",0.05),
-("apa","durere localizata fid",0.05),
-("apa","greata",0.05),
-("apa","varsaturi",0.05),
-("apa","distensie abdominala",0.05),
-("apa","febra",0.05),
-("apa","subfebrilitati",0.05),
-("apa","constipatie",0.05),
-("apa","diaree",0.05),
-("apa","inapetenta",0.05),
+("ima","barbat",0.5),
+("ima","ahc - ima",0.75),
+("ima","app - ima",0.75),
+("ima","app - arterite",0.75),
+("ima","app - cardiopatii valvulare",0.75),
+("ima","app - dz",0.75),
+("ima","app - anemie",0.75),
+("ima","app - boli endocrine",0.75),
+("ima","app - tulburari de ritm",0.75),
+("ima","app - tulburari de conducere",0.75),
+("ima","app - obezitate",0.75),
+("ima","app - hta",0.75),
+("ima","cmv - fumat",0.75),
+("ima","cmv - sedentarism",0.75),
+("ima","cmv - consum droguri",0.75),
+("ima","cmv - stres",0.75),
+("ima","durere localizare retrosternala",0.75),
+("ima","debut simptomalogie - acut",0.75),
+("ima","durere localizare toracica",0.75),
+("ima","durere localizare precordiala",0.75),
+("ima","durere localizare epigastrica",0.75),
+("ima","iradiere durere",0.75),
+("ima","durere caracter presiune",0.75),
+("ima","durere caracter arsura",0.75),
+("ima","durere durata - peste 20 min",0.75),
+("ima","dispnee",0.75),
+("ima","transpiratii",0.75),
+("ima","greata",0.75),
+("ima","varsaturi",0.75),
+("ima","anxietate",0.75),
+("ima","ameteli",0.75),
+("ima","fatigabilitate",0.75),
+("ima","sincopa",0.75),
+("ima","simptome pseudogripale",0.75),
+("ima","palpitatii",0.75),
+("ima","tahicardie",0.75),
+("ima","bradicardie",0.75),
+("ima","aritmie",0.75),
+("ima","hipertensiune",0.75),
+("ima","hipotensiune",0.75),
+("ima","tahipnee",0.75),
+("ima","febra",0.75),
+("avc","barbat",0.5),
+("avc","debut - brusc",0.75),
+("avc","ahc - avc",0.75),
+("avc","app - avc",0.75),
+("avc","app - hta",0.75),
+("avc","app - icc",0.75),
+("avc","app - ima",0.75),
+("avc","app - dz",0.75),
+("avc","app - obezitate",0.75),
+("avc","cmv - sedentarism",0.75),
+("avc","cmv - fumat",0.75),
+("avc","paralizie membru superior",0.75),
+("avc","paralizie membru inferior",0.75),
+("avc","paralizie faciala",0.75),
+("avc","pareza membru superior",0.75),
+("avc","pareza membru inferior",0.75),
+("avc","pareza faciala",0.75),
+("avc","tulburari de vorbire",0.75),
+("avc","diplopie",0.75),
+("avc","vedere incetosata",0.75),
+("avc","tulburari de coordonare",0.75),
+("avc","tulburari de echilibru",0.75),
+("avc","cefalee",0.75),
+("avc","parestezii membru superior",0.75),
+("avc","parestezii membru inferior",0.75),
+("avc","parestezii faciale",0.75),
+("avc","tulburari de mers",0.75),
+("avc","fatigabilitate",0.75),
+("avc","ameteli",0.75),
+("avc","vertij",0.75),
+("avc","sincopa",0.75),
+("avc","greata",0.75),
+("avc","varsaturi",0.75),
+("avc","dificultati la inghitire",0.75),
+("avc","convulsii",0.75),
+("avc","alterarea starii de constienta",0.75),
+("avc","fotofobie",0.75),
+("avc","amauroza",0.75),
+("avc","coma",0.75),
+("ira","barbat",0.5),
+("ira","debut simptomalogie - acut",0.75),
+("ira","app - glomerulonefrita",0.75),
+("ira","app - lupus",0.75),
+("ira","app - vasculita",0.75),
+("ira","app - mielom multiplu",0.75),
+("ira","app - sclerodermie",0.75),
+("ira","app - cancer vezica urinara",0.75),
+("ira","app - hiperplazie prostata",0.75),
+("ira","app - litiaza renala",0.75),
+("ira","app - boala arteriala periferica",0.75),
+("ira","app - dz",0.75),
+("ira","app - hta",0.75),
+("ira","app - afectiuni renale",0.75),
+("ira","app - consum hipotensoare",0.75),
+("ira","app - consum aspirina/ains",0.75),
+("ira","app - insuficienta hepatica",0.75),
+("ira","cmv - consum alcool",0.75),
+("ira","cmv - consum droguri",0.75),
+("ira","cmv - metale grele",0.75),
+("ira","anafilaxie",0.75),
+("ira","arsuri",0.75),
+("ira","dezhidratare",0.75),
+("ira","ima",0.75),
+("ira","infectie",0.75),
+("ira","edeme membre inferioare",0.75),
+("ira","dispnee",0.75),
+("ira","durere localizare toracica",0.75),
+("ira","fatigabilitate",0.75),
+("ira","alterarea starii de constienta",0.75),
+("ira","greata",0.75),
+("ira","convulsii",0.75),
+("ira","coma",0.75),
+("ira","durere caracter constrictiv",0.75),
+("apa","barbat",0.5),
+("apa","app - helmintoza",0.75),
+("apa","app - consum steroizi",0.75),
+("apa","app - dz",0.75),
+("apa","durere localizare abdominala",0.75),
+("apa","durere difuza",0.75),
+("apa","durere localizata fid",0.75),
+("apa","greata",0.75),
+("apa","varsaturi",0.75),
+("apa","distensie abdominala",0.75),
+("apa","febra",0.75),
+("apa","subfebrilitati",0.75),
+("apa","constipatie",0.75),
+("apa","diaree",0.75),
+("apa","inapetenta",0.75),
+("cdz","barbat",0.5),
+("cdz","ahc - boli autoimune",0.75),
+("cdz","ahc - dz",0.75),
+("cdz","app - consum droguri",0.75),
+("cdz","app - consum alcool",0.75),
+("cdz","app - ima",0.75),
+("cdz","app - pierdere in greutate",0.75),
+("cdz","app - infectie",0.75),
+("cdz","app - dz",0.75),
+("cdz","nerespectare tratament dz",0.75),
+("cdz","polidipsie",0.75),
+("cdz","poliurie",0.75),
+("cdz","fatigabilitate",0.75),
+("cdz","greata",0.75),
+("cdz","varsaturi",0.75),
+("cdz","dureri abdominale abdominala",0.75),
+("cdz","dureri difuze",0.75),
+("cdz","transpiratie",0.75),
+("cdz","modificarea starii de constienta",0.75),
+("cdz","febra",0.75),
+("cdz","frison",0.75),
+("cdz","durere localizare toracica",0.75),
+("cdz","dispnee",0.75),
+("cdz","tahipnee",0.75),
+("cdz","hipotensiune",0.75),
+("cdz","tahicardie",0.75),
+("cdz","halena cetonica",0.75),
+("cdz","scaderea reflexelor",0.75),
+("cdz","respiratie Kussmaul",0.75),
+("tep","barbat",0.5),
+("tep","debut simptomalogie - acut",0.75),
+("tep","app - consum droguri",0.75),
+("tep","app - anemie hemolitica",0.75),
+("tep","app - tromboza venoasa profunda",0.75),
+("tep","app - dislipidemie",0.75),
+("tep","app - edeme",0.75),
+("tep","dispnee",0.75),
+("tep","convulsii",0.75),
+("tep","sincopa",0.75),
+("tep","durere abdominala",0.75),
+("tep","febra",0.75),
+("tep","tuse",0.75),
+("tep","wheezing",0.75),
+("tep","tahipnee",0.75),
+("tep","raluri crepitante",0.75),
+("tep","accentuarea zgomotului II",0.75),
+("tep","tahicardie",0.75),
+("tep","galop III sau IV",0.75),
+("tep","tromboflebita",0.75),
+("tep","edeme membre inferioare",0.75),
+("tep","cianoza",0.75),
+("tep","durere toracica",0.75),
+("tep","durere severa",0.75),
+("tep","hemoptizie",0.75),
+("tep","anxietate",0.75),
+("tep","transpiratii",0.75),
+("tep","palpitatii",0.75),
+("tep","ameteli",0.75),
+("ars I","arsura grad I",0.75),
+("ars I","leziune eritematoasa",0.75),
+("ars I","absenta flictenelor",0.75),
+("ars I","durere",0.75),
+("ars II","arsura grad II",0.75),
+("ars II","durere",0.75),
+("ars II","leziune eritematoasa",0.75),
+("ars II","flictene",0.75),
+("ars III","arsura grad III",0.75),
+("ars III","durere atenuata",0.75),
+("ars III","leziune alba / neagra",0.75),
+("ars IV","arsura grad IV",0.75),
+("ars IV","leziune tegumentara",0.75),
+("ars IV","interesarea muschilor, fasciilor, oase, alte structuri",0.75),
+("Fractura distala radius","barbat",0.5),
+("Fractura distala radius","app - osteoporoza",0.75),
+("Fractura distala radius","app - sedentarism",0.75),
+("Fractura distala radius","app - hipocalcemie",0.75),
+("Fractura distala radius","app - tumori osoase",0.75),
+("Fractura distala radius","deformare in dos de furculita radius",0.75),
+("Fractura distala radius","scurtarea membrului superior",0.75),
+("Fractura distala radius","pierderea mobilitatii membrului'",0.75),
+("Fractura distala radius","tumefactie",0.75),
+("Fractura distala radius","durere",0.75),
+("Fractura distala radius","crepitatii osoase",0.75),
+("Fractura col femural","barbat",0.5),
+("Fractura col femural","app - osteoporoza",0.75),
+("Fractura col femural","app - sedentarism",0.75),
+("Fractura col femural","app - hipocalcemie",0.75),
+("Fractura col femural","app - tumori osoase",0.75),
+("Fractura col femural","rotatie externa si adductie membru inferior",0.75),
+("Fractura col femural","scurtarea membrului inferior",0.75),
+("Fractura col femural","pierderea mobilitatii membrului'",0.75),
+("Fractura col femural","tumefactie",0.75),
+("Fractura col femural","durere",0.75),
+("Fractura col femural","crepitatii osoase",0.75),
+("Intoxicatie co","cmv - risc intoxicatie cu co",0.75),
+("Intoxicatie co","cefalee",0.75),
+("Intoxicatie co","fatigabilitate",0.75),
+("Intoxicatie co","greturi",0.75),
+("Intoxicatie co","varsaturi",0.75),
+("Intoxicatie co","alterarea starii de constienta",0.75),
+("Intoxicatie co","ameteli",0.75),
+("Intoxicatie co","dispnee",0.75),
+("litiaza renala","barbat",0.5),
+("litiaza renala","ahc - litiaza renala",0.75),
+("litiaza renala","app - litiaza renala",0.75),
+("litiaza renala","app - insuficienta renala",0.75),
+("litiaza renala","app - infectii urinare",0.75),
+("litiaza renala","dezhidratare",0.75),
+
 
 ]
     
 diseaseGravityList = [
-    ("ima",	    9,          0.03846153846),
-    ("avc",	    8,         0.3846153846),
-    ("ira",	    7,         0.3846153846),
-    ("apa",	    5,         0.1923076923)
+    ("ima",9,   0.0353982300884956),
+    ("avc",8,   0.353982300884956),
+    ("ira",7,   0.353982300884956),
+    ("apa",5,   0.176991150442478),
+    ("cdz",6,   0.0707964601769911),
+    ("tep",10,  0.00884955752212389),
+
 ]
-    
-eps = 1e-10
+
 debugIsOn = False
 
 def debug(str):
@@ -201,24 +294,17 @@ def getNotDiseaseProbability(dgl,disease):
 # and observation set using the disease observation list
 def computeObservationGivenDiseaseTable(dol):
     obsSet = set()
-    obsCountDict = dict()
     for (d,o,p) in dol:
         obsSet.add(o)
-        if not d in obsCountDict:
-            obsCountDict[d] = 0
-            
-        obsCountDict[d] = obsCountDict[d] + 1
-        
-    obsCount = len(obsSet)
+       
     table = dict()
 
     for (d,o,p) in dol:
         assert( 0.0 <= p and p <= 1.0 )
-        assert(obsCount >= obsCountDict[d])
         k = (d,o)
         debug(str(k))
         assert(not k in table)
-        table[k] = p / ( 1.0 + (obsCount - obsCountDict[d]) * eps )
+        table[k] = p
 
     return (table, obsSet)
 
@@ -231,7 +317,7 @@ def getObservationGivenDiseaseProbability(og,observation,disease):
         assert( 0.0 <= p and p <= 1.0 )
         return p
         
-    return eps
+    return 0.5
     
 # returns the probability of an observation given not a disease
 # using the observation given disease table and disease gravity list
@@ -242,7 +328,6 @@ def getObservationGivenNotDiseaseProbability(og,dgl,observation,disease):
     for (d,g,p) in dgl:
         if (d != disease):
             p = getObservationGivenDiseaseProbability(og,observation,d)
-            assert(p >= eps)
             totalObservation = totalObservation + p * getDiseaseProbability(dgl, d)
             assert(totalObservation > 0)
 
@@ -253,20 +338,19 @@ def getObservationGivenNotDiseaseProbability(og,dgl,observation,disease):
 # checks the database for inconsistencies. Uses both
 # disease observation list and disease gravity list
 def checkDatabase(dol, dgl):
-    diseaseSymptomProbabilityDict = dict()
+    diseaseObservationSet = set()
     for (d,o,p) in dol:
-        if d in diseaseSymptomProbabilityDict:
-            diseaseSymptomProbabilityDict[d] = diseaseSymptomProbabilityDict[d] + p
-        else:
-            diseaseSymptomProbabilityDict[d] = p
+        assert(0.0 <= p and p <= 1.0)
+        debug("disease=" + d)
+        debug("observation=" + o)
+        k = (d,o)
+        assert(not k in diseaseObservationSet)
+        diseaseObservationSet.add(k)
     
     totalDiseaseProbability = 0.0
             
     for (d,g,p) in dgl:
         totalDiseaseProbability = totalDiseaseProbability + p
-        debug("d=" + d)
-        debug("p=" + str(p))
-        assert(isClose(diseaseSymptomProbabilityDict[d],1.0))
         
     assert(isClose(totalDiseaseProbability, 1.0))
     
@@ -280,8 +364,8 @@ def getDiseaseGivenObservationProbability(og,obsSet,dgl,disease,os):
     debug("p=" + str(p))
     debug("n=" + str(n))
     for observation in os:
-        assert(observation in obsSet)
         debug("observation=" + observation)
+        assert(observation in obsSet)
         p = p * getObservationGivenDiseaseProbability(og, observation, disease)
         n = n * getObservationGivenNotDiseaseProbability(og, dgl, observation, disease)
         debug("p=" + str(p))
@@ -313,11 +397,35 @@ def getPredictionList(dol,dgl,os):
     
     
 def test(os):
-    print os
-    print getPredictionList(diseaseObservationList, diseaseGravityList, os)
+    osStr = ""
+    for observation in os:
+        osStr = osStr + "    " + observation
+    for (d,p,s) in getPredictionList(diseaseObservationList, diseaseGravityList, os):
+        print osStr + " ---> " + d + "     " + str(p) + "      " + str(s)
     
+parser = argparse.ArgumentParser()
+parser.add_argument("--action", choices=['test','prediction','symptoms'], help="The action to take", required=True )
+parser.add_argument("--debug", default=False, help="Enable debug message logging", action='store_const', const=True, required=False)
+
+args = parser.parse_args()
+
+debugIsOn = args.debug
     
-test(["dispnee", "durere localizare precordiala", "coma"])
-test(["dispnee", "durere localizare precordiala", "aritmie"])
-test(["dezhidratare", "dispnee", "vertij", "sincopa", "cefalee"])
-test(["cmv - consum droguri", "cefalee", "greata", "febra", "hipotensiune"])
+if args.action == 'test':
+    test(["dispnee", "durere localizare precordiala", "coma"])
+    test(["dispnee", "durere localizare precordiala", "aritmie", "ahc - ima", "anxietate"])
+    test(["dezhidratare", "dispnee", "vertij", "sincopa", "cefalee"])
+    test(["cmv - consum droguri", "cefalee", "greata", "febra", "hipotensiune"])
+elif args.action == 'prediction':
+    os = []
+    for line in sys.stdin:
+        os.append(line.rstrip())
+    assert(len(os) > 0)
+    for (d,p,s) in getPredictionList(diseaseObservationList, diseaseGravityList, os):
+        print d + ";" + str(p) + ";" + str(s)
+elif args.action == 'symptoms':
+    (_, obsSet) = computeObservationGivenDiseaseTable(diseaseObservationList)
+    for observation in obsSet:
+        print observation
+else:
+    assert(False)
